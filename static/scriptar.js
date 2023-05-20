@@ -15,18 +15,19 @@ uploadInput.addEventListener("change", async () => {
   if (uploadInput.files.length > 0) {
     const formData = new FormData();
     formData.append("audio", uploadInput.files[0]);
-    formData.append("language", "ar");
+    formData.append("language", "en");
 
-    const response = await fetch("/summarize", {
-      method: "POST",
-      body: formData,
-    });
     const data = await response.json();
     transcription.value = data.transcription;
     summary.value = data.summary;
     audioPlayer.style.display = "block";
     frequencySpectrum.style.display = "block";
     displayFrequencySpectrum();
+
+    const response = await fetch("/summarize", {
+      method: "POST",
+      body: formData,
+    });
   }
 });
 
@@ -44,7 +45,7 @@ let recorder;
 
 async function startRecording() {
   isRecording = true;
-  recordButton.textContent = "إيقاف التسجيل";
+  recordButton.textContent = "Stop Recording";
 
   const stream = await navigator.mediaDevices.getUserMedia({
     audio: true,
@@ -58,18 +59,19 @@ async function startRecording() {
 
 async function stopRecording() {
   isRecording = false;
-  recordButton.textContent = "بدء التسجيل";
+  recordButton.textContent = "بدأ التسجيل";
 
   recorder.stop();
   recorder.exportWAV(async (blob) => {
+    const formData = new FormData();
+    formData.append("audio", blob);
+    formData.append("language", "ar");
+
     const audioURL = URL.createObjectURL(blob);
     audioPlayer.src = audioURL;
     audioPlayer.style.display = "block";
     frequencySpectrum.style.display = "block";
-
-    const formData = new FormData();
-    formData.append("audio", blob);
-    formData.append("language", "ar");
+    displayFrequencySpectrum();
 
     const response = await fetch("/summarize", {
       method: "POST",
@@ -80,7 +82,6 @@ async function stopRecording() {
     summary.value = data.summary;
   });
 }
-
 
 function displayFrequencySpectrum() {
   if (!audioContext) {
@@ -121,9 +122,5 @@ function displayFrequencySpectrum() {
     }
   }
 
-  audioPlayer.addEventListener('play', () => {
-    audioContext.resume().then(() => {
-      draw();
-    });
-  });
+  draw();
 }

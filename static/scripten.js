@@ -17,16 +17,17 @@ uploadInput.addEventListener("change", async () => {
     formData.append("audio", uploadInput.files[0]);
     formData.append("language", "en");
 
-    const response = await fetch("/summarize", {
-      method: "POST",
-      body: formData,
-    });
     const data = await response.json();
     transcription.value = data.transcription;
     summary.value = data.summary;
     audioPlayer.style.display = "block";
     frequencySpectrum.style.display = "block";
     displayFrequencySpectrum();
+
+    const response = await fetch("/summarize", {
+      method: "POST",
+      body: formData,
+    });
   }
 });
 
@@ -62,14 +63,15 @@ async function stopRecording() {
 
   recorder.stop();
   recorder.exportWAV(async (blob) => {
+    const formData = new FormData();
+    formData.append("audio", blob);
+    formData.append("language", "en");
+
     const audioURL = URL.createObjectURL(blob);
     audioPlayer.src = audioURL;
     audioPlayer.style.display = "block";
     frequencySpectrum.style.display = "block";
-
-    const formData = new FormData();
-    formData.append("audio", blob);
-    formData.append("language", "en");
+    displayFrequencySpectrum();
 
     const response = await fetch("/summarize", {
       method: "POST",
@@ -80,7 +82,6 @@ async function stopRecording() {
     summary.value = data.summary;
   });
 }
-
 
 function displayFrequencySpectrum() {
   if (!audioContext) {
@@ -121,10 +122,5 @@ function displayFrequencySpectrum() {
     }
   }
 
-  audioPlayer.addEventListener('play', () => {
-    audioContext.resume().then(() => {
-      draw();
-    });
-  });
+  draw();
 }
-

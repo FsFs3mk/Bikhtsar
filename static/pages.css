@@ -1,0 +1,50 @@
+body, textarea {
+  background-color: #110e0d;
+  color: #f2efee;
+  font-family: Arial, sans-serif;
+  margin: auto;
+  text-align: center;
+}
+
+.button-primary {
+  background-color: #b3a39e;
+  color: #f2efee;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+}
+
+button:hover {
+  background-color: #a79690;
+  transition: background-color 0.3s;
+}
+
+.button-secondary {
+  background-color: #000000;
+  border: none;
+  color: #f2efee;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.accent {
+  color: #a79690;
+}
+
+audio {
+  display: none;
+  margin: auto;
+  width: 80%;
+}
+
+#frequencySpectrum {
+  width: 80%;
+  height: 150px;
+  margin: auto;
+  display: none;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pages.css') }}" >
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+    <title>My Website</title>
+  </head>
+  <body>
+    <h1>برنامج تلخيص الصوتيات</h1>
+    <button id="recordButton" class="button-primary">إبدأ التسجيل</button>
+    <input type="file" id="uploadInput" accept="audio/*" style="display:none" />
+    <button id="uploadButton" class="button-primary">رفع ملف مسجل مسبقًا</button>   
+    <h2>:تسجيل الصوت</h2>
+    <audio id="audioPlayer" controls style="display:none"></audio>
+    <canvas id="frequencySpectrum" width="20%" height="5%"></canvas>
+    <h2>:التفريغ الصوتي</h2>
+    <textarea id="transcription" rows="10" cols="50" readonly></textarea>
+    <h2>:التلخيص</h2>
+    <textarea id="summary" rows="10" cols="50" readonly></textarea>
+    <script src="{{ url_for('static', filename='scriptar.js') }}"></script>
+  </body>
+</html>

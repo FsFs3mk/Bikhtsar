@@ -7,20 +7,74 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
     <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" >
-    <title>My Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='pages.css') }}" >
+    <title>BikhtSAr main page | what is BikhtSAr</title>
   </head>
   <body>
-    <h1>Welcome To BikhtSAr</h1>
+    <h1 class="accent">Welcome To BikhtSAr</h1>
     <div>
       <p>Using BikhtSAr You Can Save Time!<br>
-        BikhtSAr is an innovative app designed to transcribe audio and summarize its content, making it easier for users to consume information from audio sources. This app utilizes advanced speech recognition and natural language processing algorithms to accurately transcribe audio files, and then it intelligently extracts the key insights to create concise summaries. 
-      
-        The app works well with various audio formats, such as podcasts, interviews, and lectures, allowing users to save time and focus on the most important information. Additionally, BikhtSAr provides a user-friendly interface, making it simple for users to upload audio files and access the transcriptions and summaries. 
+        BikhtSAr is an innovative app designed to transcribe audio and summarize its content, making it easier for users to consume information from audio sources.<br>
+        This app utilizes advanced speech recognition and natural language processing algorithms to accurately transcribe audio files, and then it intelligently extracts the key insights to create concise summaries.<br>
+        The app works well with various audio formats, such as podcasts, interviews, and lectures, allowing users to save time and focus on the most important information.<br>
+        Additionally, BikhtSAr provides a user-friendly interface, making it simple for users to upload audio files and access the transcriptions and summaries. 
       
         In summary, BikhtSAr is a powerful tool that streamlines the process of transcribing audio and summarizing its content, assisting users in learning and retaining information more efficiently.</p>
     </div>
     <pr>If Your lecture is in english press <a href="/en">here</a></pr><br>
     <pr>If Your lecture is in arabic press <a href="/ar">here</a></pr>
+    <section id="subscription-plans" class="container mt-5">
+      <h2 class="text-center mb-4 accent">Subscription Plans</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header text-center accent">
+              <h3>Basic</h3>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">\$15/500 minutes of speech to summary</h4>
+              <p class="card-text">Access to basic features, including:</p>
+              <ul>
+                <li>Audio transcription</li>
+                <li>Text summarization</li>
+                <li>500 audio minutes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header text-center accent">
+              <h3>Standard</h3>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">\$59</h4>
+              <p class="card-text">Access to most features, including:</p>
+              <ul>
+                <li>Everything in Basic</li>
+                <li>2,000 audio minutes</li>
+                <li>Summary in Audio form</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header text-center accent">
+              <h3>Pro</h3>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">\$119</h4>
+              <p class="card-text">All features, including:</p>
+              <ul>
+                <li>Everything in Standard</li>
+                <li>Proiority support</li>
+                <li>5000 audio minutes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>    
   </body>
 </html>

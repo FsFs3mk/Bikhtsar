@@ -48,3 +48,29 @@ audio {
   margin: auto;
   display: none;
 }
+
+body {
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.accent {
+  color: #007bff;
+}
+
+.card {
+  background-color: #110e0d;
+  border: 1px solid #a79690;
+  color: #f2efee;
+  margin-bottom: 30px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}

@@ -1,21 +1,12 @@
 from flask import Flask, request, jsonify, render_template
 import whisper
 import openai
-import tiktoken
-
-tiktoken.get_encoding()
 
 app = Flask(__name__)
 
 model = whisper.load_model("large-v2")
-openai.api_key = ("")#provide your api key
+openai.api_key = ("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")
 
-def count_tokens(text, model_name="cl100k_base"):
-    tiktoken_model = tiktoken.Encoding(model_name)
-    tokenizer = tiktoken.Tokenizer(tiktoken_model)
-    tokens = tokenizer.tokenize(text)
-    return len(tokens)
-    
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -27,6 +18,14 @@ def en():
 @app.route('/ar')
 def ar():
     return render_template('ar.html')
+
+@app.route('/signup')
+def signin():
+    return render_template('signup.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 def transcribe_and_summarize(audio_file, language):
     audio_file.save("temp_audio.webm")
@@ -42,14 +41,8 @@ def transcribe_and_summarize(audio_file, language):
     else:
         raise ValueError("Invalid language")
     
-    token_count = count_tokens(transcription)
-    if token_count < 4000:
-        selected_model = "gpt-3.5-turbo"
-    else:
-        selected_model = "gpt-4"
-
     response = openai.ChatCompletion.create(
-        model=selected_model,
+        model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "system",

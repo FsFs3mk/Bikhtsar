@@ -46,7 +46,7 @@ def transcribe_and_summarize(audio_file, language):
                 "content": prompt
             }
         ],
-        temperature=0.2,
+        temperature=0,
     )
 
     summary = response['choices'][0]['message']['content']

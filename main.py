@@ -3,11 +3,19 @@ import whisper
 import openai
 import tiktoken
 
+tiktoken.get_encoding()
+
 app = Flask(__name__)
 
 model = whisper.load_model("large-v2")
 openai.api_key = ("")#provide your api key
 
+def count_tokens(text, model_name="cl100k_base"):
+    tiktoken_model = tiktoken.Encoding(model_name)
+    tokenizer = tiktoken.Tokenizer(tiktoken_model)
+    tokens = tokenizer.tokenize(text)
+    return len(tokens)
+    
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -33,9 +41,15 @@ def transcribe_and_summarize(audio_file, language):
         system_message = "برنامج يساعد على تلخيص النصوص"
     else:
         raise ValueError("Invalid language")
+    
+    token_count = count_tokens(transcription)
+    if token_count < 4000:
+        selected_model = "gpt-3.5-turbo"
+    else:
+        selected_model = "gpt-4"
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model=selected_model,
         messages=[
             {
                 "role": "system",

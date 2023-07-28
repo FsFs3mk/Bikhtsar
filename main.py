@@ -5,7 +5,7 @@ import openai
 app = Flask(__name__)
 
 model = whisper.load_model("large-v2")
-openai.api_key = ("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")
+openai.api_key = ("insert your api here")
 
 @app.route('/')
 def index():
